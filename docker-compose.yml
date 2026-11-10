@@ -1,0 +1,11 @@
+services:
+  agente-leads:
+    build: .
+    container_name: agente_leads_teams
+    restart: unless-stopped
+    # rede do host: o serviço escuta só em 127.0.0.1:8090 (o nginx encaminha)
+    # e acessa o Postgres em 127.0.0.1:5432
+    network_mode: host
+    env_file: .env
+    volumes:
+      - ./data:/data
